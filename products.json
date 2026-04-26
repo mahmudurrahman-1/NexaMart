@@ -8,7 +8,7 @@
       "offerPrice": null,
       "category": "Accessories",
       "image": "images/leather-bag.jpg",
-      "desc": "Handcrafted genuine leather bag. Durable, stylish, and perfect for everyday use. Available in brown and black."
+      "desc": "🔥 Smart & classy look! Genuine leather feel, perfect for office & daily use. Limited stock – grab yours now!"
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "offerPrice": 850,
       "category": "Electronics",
       "image": "images/earbuds.jpg",
-      "desc": "Crystal clear sound with deep bass. 6 hours battery life, comes with charging case. Sweat resistant."
+      "desc": "🔥 Deep bass + clear sound! 6hrs battery & pocket-friendly. Best budget earbuds right now!"
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "offerPrice": 450,
       "category": "Clothing",
       "image": "images/kurta.jpg",
-      "desc": "Soft 100% cotton kurta, perfect for all seasons. Available in S, M, L, XL sizes. Multiple colors available."
+      "desc": "🌿 Comfortable & stylish! Perfect for daily wear & outing. Soft cotton, all sizes available!"
     },
     {
       "id": 4,
@@ -48,7 +48,7 @@
       "offerPrice": 1800,
       "category": "Electronics",
       "image": "images/smart-watch.jpg",
-      "desc": "Tracks steps, heart rate, and sleep. Notification alerts, 7 day battery. Water resistant."
+      "desc": "💧 Keep drinks cold 24hrs! Leak-proof & durable. Must-have for travel & gym!"
     },
     {
       "id": 6,
