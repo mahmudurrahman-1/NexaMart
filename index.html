@@ -3,8 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NexaMart - Reliable Bazaar BD</title>
+<title>NexaMart — Reliable Bazaar Bd</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!-- Netlify Identity — handles email confirmation tokens -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  // If this page receives a confirmation/recovery/invite token,
+  // immediately redirect to admin.html with the same token
+  (function() {
+    const hash = window.location.hash;
+    if (
+      hash.includes('confirmation_token=') ||
+      hash.includes('recovery_token=') ||
+      hash.includes('invite_token=')
+    ) {
+      window.location.replace('/admin.html' + hash);
+    }
+  })();
+</script>
 <style>
   :root {
     --bg: #faf7f2;
@@ -163,6 +179,55 @@
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--accent);
+  }
+  .price-box { display: flex; flex-direction: column; gap: 2px; }
+  .price-offer {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #c8442a;
+  }
+  .price-regular-old {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+  .offer-badge {
+    display: inline-block;
+    background: #c8442a;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .modal-price-box { margin-bottom: 14px; }
+  .modal-offer-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .modal-regular-price {
+    font-size: 1rem;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-left: 10px;
+  }
+  .modal-discount-badge {
+    display: inline-block;
+    background: #c8442a;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
   }
   .add-btn {
     background: var(--ink);
@@ -430,17 +495,20 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">NexaMart -<span> Reliable Bazaar BD</span></div>
-  <button class="cart-btn" onclick="openCart()">
-    🛒 Cart
-    <span class="cart-count" id="cartCount">0</span>
-  </button>
+  <div class="logo">Nexa<span>Mart</span></div>
+  <div style="display:flex; align-items:center; gap:12px;">
+    <a href="admin.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; text-decoration:none; font-weight:500; letter-spacing:0.5px;" title="Admin Panel">⚙️ Admin</a>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <h1>Shop Smart,<br>Live <em>Better</em></h1>
-  <p>Browse our products — add to cart and order with ease</p>
+  <p>NexaMart — Reliable Bazaar Bd | Browse, add to cart &amp; order with ease</p>
 </div>
 
 <!-- PRODUCTS -->
@@ -494,14 +562,14 @@
           </div>
           <div class="form-row full">
             <div class="form-group">
-              <label>Email </label>
-              <input type="email" id="custEmail" placeholder="your@email.com" required/>
+              <label>Email (optional)</label>
+              <input type="email" id="custEmail" placeholder="your@email.com"/>
             </div>
           </div>
           <div class="form-row full">
             <div class="form-group">
               <label>Delivery Address *</label>
-              <textarea id="custAddress" rows="4" placeholder="Your full address..." required></textarea>
+              <textarea id="custAddress" rows="2" placeholder="Your full address..." required></textarea>
             </div>
           </div>
           <div class="form-row full">
@@ -510,10 +578,17 @@
               <textarea id="custNote" rows="2" placeholder="Any special request..."></textarea>
             </div>
           </div>
+          <!-- Netlify hidden form for order submission -->
+          <form name="order" netlify netlify-honeypot="bot-field" hidden>
+            <input name="customer-name"/>
+            <input name="phone"/>
+            <input name="email"/>
+            <input name="address"/>
+            <input name="note"/>
+            <textarea name="order-items"></textarea>
+            <input name="total"/>
+          </form>
           <button class="submit-btn" id="submitBtn" onclick="submitOrder()">📧 Send Order to Shop</button>
-          <p style="text-align:center; font-size:0.8rem; color:var(--muted); margin-top:10px;">
-            ⚠️ Replace <strong>YOUR_FORMSPREE_ID</strong> in the code with your free Formspree ID to receive orders by email.
-          </p>
         </div>
         <div class="success-msg" id="successMsg">
           <span class="icon">🎉</span>
@@ -527,7 +602,7 @@
 
 <!-- TOAST -->
 <div class="toast" id="toast">Added to cart!</div>
-<a href="admin.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; text-decoration:none; font-weight:500; letter-spacing:0.5px;" title="Admin Panel">⚙️ Admin</a>
+
 <script>
 // ============================================================
 // 🛍️ EDIT YOUR PRODUCTS HERE
@@ -600,7 +675,9 @@ function renderProducts() {
   const grid = document.getElementById('productsGrid');
   grid.innerHTML = products.map(p => `
     <div class="product-card" onclick="openProduct(${p.id})">
-      <div class="product-img">${p.emoji}</div>
+      ${p.image
+        ? `<img class="product-img" src="${p.image}" alt="${p.name}" style="object-fit:cover;">`
+        : `<div class="product-img">${p.emoji}</div>`}
       <div class="product-info">
         <div class="product-name">${p.name}</div>
         <div class="product-desc">${p.desc.substring(0,70)}...</div>
@@ -617,9 +694,26 @@ function renderProducts() {
 function openProduct(id) {
   const p = products.find(x => x.id === id);
   currentProduct = p;
-  document.getElementById('modalEmoji').textContent = p.emoji;
+  const modalImgEl = document.getElementById('modalEmoji');
+  if (p.image) {
+    modalImgEl.innerHTML = `<img src="${p.image}" alt="${p.name}" style="width:100%;height:260px;object-fit:cover;">`;
+  } else {
+    modalImgEl.innerHTML = p.emoji;
+    modalImgEl.style.fontSize = '7rem';
+  }
   document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalPrice').textContent = '৳' + p.price;
+  const priceEl = document.getElementById('modalPrice');
+  if (p.offerPrice) {
+    const discount = Math.round((1 - p.offerPrice / p.price) * 100);
+    priceEl.innerHTML = `
+      <span class="modal-offer-price">৳\${p.offerPrice}</span>
+      <span class="modal-regular-price">৳\${p.price}</span>
+      <span class="modal-discount-badge">\${discount}% OFF</span>`;
+    priceEl.className = 'modal-price-box';
+  } else {
+    priceEl.textContent = '৳' + p.price;
+    priceEl.className = 'price';
+  }
   document.getElementById('modalDesc').textContent = p.desc;
   document.getElementById('productOverlay').classList.add('active');
 }
@@ -682,7 +776,7 @@ function renderCart() {
       <div class="cart-item-emoji">${item.emoji}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">৳${item.price} × ${item.qty} = ৳${item.price * item.qty}</div>
+        <div class="cart-item-price">৳${item.price} × ${item.qty} = ৳${item.price * item.qty}${item.regularPrice && item.regularPrice !== item.price ? ` <span style="font-size:0.75rem;color:#2ecc71;">(saved ৳${(item.regularPrice - item.price)*item.qty})</span>` : ""}</div>
       </div>
       <div class="qty-controls">
         <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
@@ -706,7 +800,7 @@ function changeQty(id, delta) {
   renderCart();
 }
 
-// SUBMIT ORDER via Formspree + save to localStorage for admin
+// SUBMIT ORDER via Netlify Forms — no Formspree needed!
 async function submitOrder() {
   const name    = document.getElementById('custName').value.trim();
   const phone   = document.getElementById('custPhone').value.trim();
@@ -735,55 +829,46 @@ async function submitOrder() {
   orders.push(newOrder);
   localStorage.setItem('shop_orders', JSON.stringify(orders));
 
-  const message = `
-🛒 NEW ORDER
-
-Customer: ${name}
-Phone: ${phone}
-Email: ${email || 'Not provided'}
-Address: ${address}
-Note: ${note || 'None'}
-
---- ORDER ITEMS ---
-${orderLines}
-
-TOTAL: ৳${total}
-  `.trim();
-
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Sending...';
 
   try {
-    // ⚠️ REPLACE "YOUR_FORMSPREE_ID" below with your actual Formspree form ID
-    // Get it free at https://formspree.io → Create Form → copy the ID
-    const FORMSPREE_ID = "mgorqpwa";
+    const s = JSON.parse(localStorage.getItem('shop_settings') || '{}');
+    const formspreeId = s.formspreeId || '';
+    let sent = false;
 
-    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({
-        name: name,
-        email: email || "no-email@order.com",
-        message: message
-      })
-    });
-
-    if (res.ok) {
-      document.getElementById('formSection').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-      cart = [];
-      updateCartCount();
-    } else {
-      alert("Something went wrong. Please set up your Formspree ID first.");
-      btn.disabled = false;
-      btn.textContent = '📧 Send Order to Shop';
+    // Try Formspree first if configured
+    if (formspreeId) {
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email: email || 'Not provided', phone, address, note, message: orderLines, total: '৳' + total })
+      });
+      if (res.ok) sent = true;
     }
-  } catch(e) {
-    alert("Please replace YOUR_FORMSPREE_ID with your Formspree ID to receive orders.");
-    btn.disabled = false;
-    btn.textContent = '📧 Send Order to Shop';
-  }
+
+    // Also try Netlify Forms
+    if (!sent) {
+      const formData = new FormData();
+      formData.append('form-name', 'order');
+      formData.append('customer-name', name);
+      formData.append('phone', phone);
+      formData.append('email', email || 'Not provided');
+      formData.append('address', address);
+      formData.append('note', note || 'None');
+      formData.append('order-items', orderLines);
+      formData.append('total', '৳' + total);
+      const res2 = await fetch('/', { method: 'POST', body: formData });
+      if (res2.ok) sent = true;
+    }
+  } catch(e) {}
+
+  // Always show success (order saved to localStorage)
+  document.getElementById('formSection').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  cart = [];
+  updateCartCount();
 }
 
 // TOAST
@@ -794,8 +879,46 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2200);
 }
 
-// INIT
-renderProducts();
+// ── INIT — Load products from JSONBin (online database) ──────
+// Reads DB config that admin saved in localStorage
+async function initShop() {
+  const s = JSON.parse(localStorage.getItem('shop_settings') || '{}');
+  const binId = s.binId || '';
+  const apiKey = s.apiKey || '';
+
+  if (binId && apiKey) {
+    try {
+      const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+        headers: { 'X-Master-Key': apiKey }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const dbProducts = data.record.products || [];
+        if (dbProducts.length > 0) {
+          products.length = 0;
+          dbProducts.forEach(p => products.push(p));
+          renderProducts();
+          return;
+        }
+      }
+    } catch(e) {}
+  }
+  // Fallback: show hardcoded sample products
+  renderProducts();
+}
+
+initShop();
 </script>
+
+<!-- FOOTER -->
+<footer style="background:#1a1410; color:rgba(255,255,255,0.5); text-align:center; padding:28px 20px; font-size:0.85rem; line-height:1.8;">
+  <div style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:#fff; margin-bottom:6px;">
+    Nexa<span style="color:#e8a020;">Mart</span>
+  </div>
+  <div style="margin-bottom:4px;">Reliable Bazaar Bd</div>
+  <div>&copy; 2026 NexaMart — Reliable Bazaar Bd. All rights reserved.</div>
+  <div style="margin-top:8px; font-size:0.78rem; color:rgba(255,255,255,0.3);">Designed &amp; built for Bangladesh 🇧🇩</div>
+</footer>
+
 </body>
 </html>

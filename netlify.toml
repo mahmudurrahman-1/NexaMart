@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+
+# Redirect email confirmation links to admin page
+[[redirects]]
+  from = "/#confirmation_token=*"
+  to = "/admin.html#confirmation_token=:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/#recovery_token=*"
+  to = "/admin.html#recovery_token=:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/#invite_token=*"
+  to = "/admin.html#invite_token=:splat"
+  status = 301
+  force = true
