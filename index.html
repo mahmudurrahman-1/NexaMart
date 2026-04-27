@@ -321,17 +321,21 @@ var DELIVERY_CHARGE=0;
 function sellingPrice(p){return(p.offerPrice&&p.offerPrice>0&&p.offerPrice<p.price)?p.offerPrice:p.price;}
 
 async function loadProducts(){
-  /* prefer admin localStorage override */
-  try{
-    var s=localStorage.getItem('shop_products');
-    if(s){var a=JSON.parse(s);if(Array.isArray(a)&&a.length){ALL_PRODUCTS=a;return;}}
-  }catch(e){}
+  /* Always fetch fresh from server with cache-busting so customers see latest products.
+     localStorage is only used as a fallback if the network request fails. */
   try{
     var r=await fetch('products.json?v='+Date.now());
     if(!r.ok)throw 0;
     var d=await r.json();
     ALL_PRODUCTS=d.products||[];
-  }catch(e){ALL_PRODUCTS=[];}
+    return;
+  }catch(e){}
+  /* Network failed — fall back to localStorage if available */
+  try{
+    var s=localStorage.getItem('shop_products');
+    if(s){var a=JSON.parse(s);if(Array.isArray(a)&&a.length){ALL_PRODUCTS=a;return;}}
+  }catch(e){}
+  ALL_PRODUCTS=[];
 }
 
 /* ═══════════════════════════════════════════════

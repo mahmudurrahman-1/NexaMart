@@ -338,7 +338,7 @@ function switchTab(name){
   else if(name==='settings')loadSettingsUI();
 }
 
-async function loadAll(){renderDashboard();}
+async function loadAll(){renderDashboard();renderOrders();}
 
 /* ═══════════════════════════════
    DASHBOARD
@@ -372,7 +372,8 @@ function renderOrders(){
   }).join('');
 }
 function viewOrder(id){
-  var o=getOrders().find(function(x){return x.id===id;});if(!o)return;viewingId=id;
+  id=Number(id);
+  var o=getOrders().find(function(x){return Number(x.id)===id;});if(!o)return;viewingId=id;
   document.getElementById('orderDetailTitle').textContent='Order #'+o.id+' — '+o.name;
   document.getElementById('orderInfoGrid').innerHTML=
     '<div class="oi"><div class="oi-lbl">Customer</div><div class="oi-val">'+o.name+'</div></div>'+
@@ -388,12 +389,13 @@ function viewOrder(id){
   var p=document.getElementById('orderDetailPanel');p.classList.add('open');p.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function saveStatus(){
-  var orders=getOrders();var o=orders.find(function(x){return x.id===viewingId;});
+  var orders=getOrders();var o=orders.find(function(x){return Number(x.id)===Number(viewingId);});
   if(o){o.status=document.getElementById('statusSelect').value;setOrders(orders);renderOrders();toast('Status updated!');}
 }
 function deleteOrder(id){
+  id=Number(id);
   if(!confirm('Delete this order?'))return;
-  setOrders(getOrders().filter(function(o){return o.id!==id;}));
+  setOrders(getOrders().filter(function(o){return Number(o.id)!==id;}));
   renderOrders();renderDashboard();
   document.getElementById('orderDetailPanel').classList.remove('open');
   toast('Order deleted',true);
