@@ -2,13 +2,13 @@
   "products": [
     {
       "id": 1,
-      "name": "Premium Leather Bag",
+      "name": "Ladies Trendy Handbag",
       "emoji": "👜",
-      "price": 1200,
-      "offerPrice": null,
-      "category": "Accessories",
-      "image": "images/leather-bag.jpg",
-      "desc": "Handcrafted genuine leather bag — built to last a lifetime.\n\nFeatures:\n• Premium full-grain leather\n• Spacious main compartment\n• Inner zipper pocket\n• Adjustable shoulder strap\n\nAvailable in Brown and Black."
+      "price": 750,
+      "offerPrice": 550,
+      "category": "Women Accessories",
+      "image": "images/ladies-handbag.jpg",
+      "desc": "Trendy everyday handbag for women — stylish, lightweight and budget friendly.\n\nFeatures:\n• Premium PU leather finish\n• Spacious main compartment\n• Inner zipper pocket\n• Perfect for daily use, shopping & office\n• Available in Black, Brown, Beige"
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "offerPrice": 850,
       "category": "Electronics",
       "image": "images/earbuds.jpg",
-      "desc": "Crystal clear sound with deep, punchy bass.\n\nSpecifications:\n• 6 hours playtime per charge\n• Charging case included (18hr total)\n• Sweat & water resistant (IPX4)\n• Touch controls on each bud\n• Bluetooth 5.0 — 10m range"
+      "desc": "High-quality wireless earbuds with deep bass and clear sound.\n\nFeatures:\n• 6–18 hours battery backup\n• Bluetooth 5.0\n• Touch control\n• Sweat resistant design\n• Fast auto pairing"
     },
     {
       "id": 3,
@@ -26,59 +26,49 @@
       "emoji": "👕",
       "price": 600,
       "offerPrice": 450,
-      "category": "Clothing",
+      "category": "Women Fashion",
       "image": "images/kurta.jpg",
-      "desc": "Soft 100% cotton kurta — perfect for all seasons.\n\nDetails:\n• Sizes: S, M, L, XL, XXL\n• Colors: White, Sky Blue, Olive\n• Machine washable\n• Breathable summer fabric\n• Traditional embroidery at collar"
+      "desc": "Soft breathable cotton kurta — perfect for daily and casual wear.\n\nDetails:\n• Free size (fits S–L)\n• Colors: Black, White, Sky Blue, Pastel Pink\n• Lightweight summer fabric\n• Loose comfortable fit design"
     },
     {
       "id": 4,
-      "name": "Stainless Water Bottle",
-      "emoji": "🍶",
-      "price": 320,
-      "offerPrice": null,
-      "category": "Kitchen",
-      "image": "images/water-bottle.jpg",
-      "desc": "Double-wall vacuum insulated bottle — keeps drinks perfect all day.\n\nSpecs:\n• Capacity: 750ml\n• Cold: up to 24 hours\n• Hot: up to 12 hours\n• Leak-proof lid\n• BPA-free stainless steel"
+      "name": "Women Casual Dress",
+      "emoji": "👗",
+      "price": 900,
+      "offerPrice": 700,
+      "category": "Women Fashion",
+      "image": "images/women-dress.jpg",
+      "desc": "Elegant casual dress for modern women — comfortable and stylish.\n\nFeatures:\n• Floral & plain designs\n• Free size fit (S–L)\n• Soft cotton fabric\n• Suitable for daily wear & outings"
     },
     {
       "id": 5,
-      "name": "Smart Watch",
-      "emoji": "⌚",
-      "price": 2200,
-      "offerPrice": 1800,
-      "category": "Electronics",
-      "image": "images/smart-watch.jpg",
-      "desc": "Stay connected and healthy on the go.\n\nFeatures:\n• Heart rate & SpO2 monitor\n• Step counter & sleep tracker\n• 7-day battery life\n• Notification alerts (calls, SMS, apps)\n• Water resistant (50m)\n• Compatible with Android & iOS"
-    },
-    {
-      "id": 6,
       "name": "Scented Candle Set",
       "emoji": "🕯️",
       "price": 380,
       "offerPrice": null,
-      "category": "Home",
+      "category": "Gift Items",
       "image": "images/candle-set.jpg",
-      "desc": "A luxury set of 3 hand-poured scented candles.\n\nScents included:\n• Lavender — calming & relaxing\n• Rose — romantic & warm\n• Jasmine — fresh & uplifting\n\n30+ burn hours each. Made with natural soy wax."
+      "desc": "Luxury scented candle set for home decor and gifting.\n\nScents:\n• Lavender\n• Rose\n• Jasmine\n\n30+ hours burn time. Made with natural soy wax."
     },
     {
-      "id": 7,
+      "id": 6,
       "name": "Ceramic Coffee Mug",
       "emoji": "☕",
       "price": 220,
       "offerPrice": null,
-      "category": "Kitchen",
+      "category": "Gift Items",
       "image": "images/coffee-mug.jpg",
-      "desc": "Handmade ceramic mug with a unique earthy glaze.\n\nDetails:\n• 350ml capacity\n• Microwave safe\n• Dishwasher safe\n• Each piece is unique — no two alike\n• Comfortable ergonomic handle"
+      "desc": "Stylish ceramic coffee mug — perfect for daily tea or coffee.\n\nDetails:\n• 350ml capacity\n• Microwave safe\n• Dishwasher safe\n• Unique handmade finish"
     },
     {
-      "id": 8,
+      "id": 7,
       "name": "Desk Organizer",
       "emoji": "🗂️",
       "price": 550,
       "offerPrice": null,
-      "category": "Office",
+      "category": "Home & Office",
       "image": "images/desk-organizer.jpg",
-      "desc": "Bamboo desk organizer — keep your workspace clean and productive.\n\nIncludes:\n• 5 compartments (pens, notes, cards, etc.)\n• Phone stand slot\n• Eco-friendly bamboo material\n• Non-slip rubber base\n• Easy to assemble"
+      "desc": "Eco-friendly bamboo desk organizer for a clean workspace.\n\nFeatures:\n• Multiple compartments\n• Phone stand included\n• Durable bamboo material\n• Minimal aesthetic design"
     }
   ]
 }
