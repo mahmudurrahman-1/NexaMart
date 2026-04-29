@@ -7,7 +7,7 @@
       "price": 750,
       "offerPrice": 550,
       "category": "Women Accessories",
-      "image": "images/ladies-handbag.jpg",
+      "images": ["images/ladies-handbag.jpg", "images/ladies-handbag.jpg", "images/ladies-handbag.jpg"],
       "desc": "Trendy everyday handbag for women — stylish, lightweight and budget friendly.\n\nFeatures:\n• Premium PU leather finish\n• Spacious main compartment\n• Inner zipper pocket\n• Perfect for daily use, shopping & office\n• Available in Black, Brown, Beige"
     },
     {
@@ -17,7 +17,7 @@
       "price": 1100,
       "offerPrice": 850,
       "category": "Electronics",
-      "image": "images/earbuds.jpg",
+      "images": ["images/earbuds.jpg", "images/earbuds.jpg", "images/earbuds.jpg"],
       "desc": "High-quality wireless earbuds with deep bass and clear sound.\n\nFeatures:\n• 6–18 hours battery backup\n• Bluetooth 5.0\n• Touch control\n• Sweat resistant design\n• Fast auto pairing"
     },
     {
@@ -27,7 +27,7 @@
       "price": 600,
       "offerPrice": 450,
       "category": "Women Fashion",
-      "image": "images/kurta.jpg",
+      "images": ["images/kurta.jpg", "images/kurta.jpg", "images/kurta.jpg"],
       "desc": "Soft breathable cotton kurta — perfect for daily and casual wear.\n\nDetails:\n• Free size (fits S–L)\n• Colors: Black, White, Sky Blue, Pastel Pink\n• Lightweight summer fabric\n• Loose comfortable fit design"
     },
     {
@@ -37,7 +37,7 @@
       "price": 900,
       "offerPrice": 700,
       "category": "Women Fashion",
-      "image": "images/women-dress.jpg",
+      "images": ["images/kurta.jpg", "images/kurta.jpg"],
       "desc": "Elegant casual dress for modern women — comfortable and stylish.\n\nFeatures:\n• Floral & plain designs\n• Free size fit (S–L)\n• Soft cotton fabric\n• Suitable for daily wear & outings"
     },
     {
@@ -47,7 +47,7 @@
       "price": 380,
       "offerPrice": null,
       "category": "Gift Items",
-      "image": "images/candle-set.jpg",
+      "images": ["images/earbuds.jpg"],
       "desc": "Luxury scented candle set for home decor and gifting.\n\nScents:\n• Lavender\n• Rose\n• Jasmine\n\n30+ hours burn time. Made with natural soy wax."
     },
     {
@@ -57,7 +57,7 @@
       "price": 220,
       "offerPrice": null,
       "category": "Gift Items",
-      "image": "images/coffee-mug.jpg",
+      "images": ["images/earbuds.jpg", "images/ladies-handbag.jpg"],
       "desc": "Stylish ceramic coffee mug — perfect for daily tea or coffee.\n\nDetails:\n• 350ml capacity\n• Microwave safe\n• Dishwasher safe\n• Unique handmade finish"
     },
     {
@@ -67,7 +67,7 @@
       "price": 550,
       "offerPrice": null,
       "category": "Home & Office",
-      "image": "images/desk-organizer.jpg",
+      "images": ["images/kurta.jpg", "images/earbuds.jpg"],
       "desc": "Eco-friendly bamboo desk organizer for a clean workspace.\n\nFeatures:\n• Multiple compartments\n• Phone stand included\n• Durable bamboo material\n• Minimal aesthetic design"
     }
   ]
